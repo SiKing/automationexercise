@@ -22,7 +22,7 @@
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
+			<artifactId>junit-jupiter</artifactId>
 			<version>5.13.1</version>
 		</dependency>
 
@@ -50,6 +50,7 @@
 
 		<plugins>
 
+			<!-- FIXME: not working! -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
