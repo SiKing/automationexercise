@@ -76,7 +76,7 @@ class Register {
 
 	assertThat(page.getByText("ENTER ACCOUNT INFORMATION")).isVisible();
 
-	page.locator("//input[@id='id_gender1']").click();
+	page.locator("//input[@id='id_gender1']").click(); // XPath
 	assertThat(page.getByTestId("name")).hasValue(username);
 	assertThat(page.getByTestId("email")).hasValue(Pattern.compile(".*@mailinator.com"));
 	page.getByTestId("password").fill(RandomStringUtils.insecure().nextAlphanumeric(10));
