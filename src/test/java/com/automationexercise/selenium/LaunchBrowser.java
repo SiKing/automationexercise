@@ -13,7 +13,7 @@ public class LaunchBrowser {
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-	// read property from Maven pom.xml
+	// read property set from Maven pom.xml
 	boolean headless = BooleanUtils.toBoolean(System.getProperty("headless", "no"));
 	ChromeOptions options = new ChromeOptions();
 	if (headless)

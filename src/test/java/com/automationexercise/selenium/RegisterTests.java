@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 class RegisterTests extends LaunchBrowser {
 
-    private static String username = "Mark Abene";
+    private static final String username = "Paul Stira";
 
     /**
      * Test Case 1: Register User

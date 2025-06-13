@@ -20,9 +20,9 @@ import io.restassured.response.Response;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class RegisterTests {
 
-    private static String username = "Elias Ladopoulos";
-    public static String email = RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com";
-    private static String password = RandomStringUtils.insecure().nextAlphanumeric(10);
+    private static final String username = "Elias Ladopoulos";
+    public static final String email = RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com";
+    private static final String password = RandomStringUtils.insecure().nextAlphanumeric(10);
 
     /**
      * API 11: POST To Create/Register User Account

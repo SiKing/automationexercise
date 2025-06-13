@@ -12,7 +12,7 @@ public class CustomOptions implements OptionsFactory {
 
     @Override
     public Options getOptions() {
-	// read property from Maven pom.xml
+	// read property set from Maven pom.xml
 	boolean headless = BooleanUtils.toBoolean(System.getProperty("headless", "no"));
 	return new Options() //
 		.setHeadless(headless) // headless browser?

@@ -18,7 +18,7 @@ import com.microsoft.playwright.junit.UsePlaywright;
 @UsePlaywright(CustomOptions.class)
 class RegisterTests {
 
-    private static String username = "Mark Abene";
+    private static final String username = "Mark Abene";
 
     private static com.automationexercise.restassured.RegisterTests existingUser = new com.automationexercise.restassured.RegisterTests();
 
