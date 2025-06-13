@@ -5,6 +5,8 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.microsoft.playwright.Page;
@@ -17,6 +19,18 @@ import com.microsoft.playwright.junit.UsePlaywright;
 class RegisterTests {
 
     private static String username = "Mark Abene";
+
+    private static com.automationexercise.restassured.RegisterTests existingUser = new com.automationexercise.restassured.RegisterTests();
+
+    @BeforeAll
+    static void createUser() throws Exception {
+	existingUser.test11_createUser();
+    }
+
+    @AfterAll
+    static void deleteUser() throws Exception {
+	existingUser.test12_deleteUser();
+    }
 
     /**
      * Test Case 1: Register User
@@ -113,5 +127,43 @@ class RegisterTests {
 	page.getByTestId("continue-button").click();
 
 	assertThat(page).hasTitle("Automation Exercise"); // back to Home page
+    }
+
+    /**
+     * Test Case 5: Register User with existing email
+     * 
+     * 1. Launch browser
+     * 
+     * 2. Navigate to url 'http://automationexercise.com'
+     * 
+     * 3. Verify that home page is visible successfully
+     * 
+     * 4. Click on 'Signup / Login' button
+     * 
+     * 5. Verify 'New User Signup!' is visible
+     * 
+     * 6. Enter name and already registered email address
+     * 
+     * 7. Click 'Signup' button
+     * 
+     * 8. Verify error 'Email Address already exist!' is visible
+     */
+    @Test
+    void test05(Page page) {
+
+	page.navigate("http://automationexercise.com");
+
+	assertThat(page).hasTitle("Automation Exercise");
+
+	page.getByText("Signup / Login").click();
+
+	assertThat(page.getByText("New User Signup!")).isVisible();
+
+	page.getByTestId("signup-name").fill(username);
+	page.getByTestId("signup-email").fill(com.automationexercise.restassured.RegisterTests.email);
+
+	page.getByTestId("signup-button").click();
+
+	assertThat(page.getByText("Email Address already exist!")).isVisible();
     }
 }

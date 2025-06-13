@@ -12,11 +12,16 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import io.restassured.response.Response;
 
+/**
+ * I am using these tests to create / delete user for
+ * {@link com.automationexercise.playwright.RegisterTests}, so some of these
+ * fields need to be {@code public}.
+ */
 @TestMethodOrder(MethodOrderer.MethodName.class)
-class RegisterTests {
+public class RegisterTests {
 
     private static String username = "Elias Ladopoulos";
-    private static String email = RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com";
+    public static String email = RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com";
     private static String password = RandomStringUtils.insecure().nextAlphanumeric(10);
 
     /**
@@ -35,7 +40,7 @@ class RegisterTests {
      * Response Message: User created!
      */
     @Test
-    void test11() throws Exception {
+    public void test11_createUser() throws Exception {
 	Response resp = given(). //
 		multiPart("name", username). //
 		multiPart("email", email). //
@@ -81,7 +86,7 @@ class RegisterTests {
      * Response Message: Account deleted!
      */
     @Test
-    void test12() throws Exception {
+    public void test12_deleteUser() throws Exception {
 	Response resp = given(). //
 		multiPart("email", email). //
 		multiPart("password", password). //
