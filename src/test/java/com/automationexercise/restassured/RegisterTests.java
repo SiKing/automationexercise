@@ -14,15 +14,15 @@ import io.restassured.response.Response;
 
 /**
  * I am using these tests to create / delete user for
- * {@link com.automationexercise.playwright.RegisterTests}, so some of these
- * fields need to be {@code public}.
+ * {@link com.automationexercise.playwright}, so fields here need to be
+ * {@code public}.
  */
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class RegisterTests {
 
-    private static final String username = "Elias Ladopoulos";
+    public static final String username = "Elias Ladopoulos";
     public static final String email = RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com";
-    private static final String password = RandomStringUtils.insecure().nextAlphanumeric(10);
+    public static final String password = RandomStringUtils.insecure().nextAlphanumeric(10);
 
     /**
      * API 11: POST To Create/Register User Account
