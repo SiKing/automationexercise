@@ -90,7 +90,7 @@ class RegisterTests {
 
 	assertThat(page.getByText("ENTER ACCOUNT INFORMATION")).isVisible();
 
-	page.locator("//input[@id='id_gender1']").click(); // XPath
+	page.locator("id=id_gender1").click();
 	assertThat(page.getByTestId("name")).hasValue(username);
 	assertThat(page.getByTestId("email")).hasValue(Pattern.compile(".*@mailinator.com"));
 	page.getByTestId("password").fill(RandomStringUtils.insecure().nextAlphanumeric(10));
@@ -98,9 +98,9 @@ class RegisterTests {
 	page.getByTestId("months").selectOption("10");
 	page.getByTestId("years").selectOption("2000");
 
-	page.locator("//input[@id='newsletter']").click();
+	page.locator("id=newsletter").click();
 
-	page.locator("//input[@id='optin']").click();
+	page.locator("id=optin").click();
 
 	page.getByTestId("first_name").fill(RandomStringUtils.insecure().nextAlphabetic(10));
 	page.getByTestId("last_name").fill(RandomStringUtils.insecure().nextAlphabetic(10));
