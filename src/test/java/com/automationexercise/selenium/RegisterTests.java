@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-class Register extends LaunchBrowser {
+class RegisterTests extends LaunchBrowser {
 
     private static String username = "Mark Abene";
 

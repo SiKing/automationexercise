@@ -14,7 +14,7 @@ import com.microsoft.playwright.junit.UsePlaywright;
  * https://playwright.dev/java/docs/junit
  */
 @UsePlaywright(CustomOptions.class)
-class Register {
+class RegisterTests {
 
     private static String username = "Mark Abene";
 
