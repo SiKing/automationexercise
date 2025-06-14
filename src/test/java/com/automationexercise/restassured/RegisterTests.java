@@ -14,7 +14,7 @@ import io.restassured.response.Response;
 
 /**
  * I am using these tests to create / delete user for
- * {@link com.automationexercise.playwright}, so fields here need to be
+ * {@link com.automationexercise.playwright}, so everything(?) here need to be
  * {@code public}.
  */
 @TestMethodOrder(MethodOrderer.MethodName.class)
