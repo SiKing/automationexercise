@@ -6,13 +6,13 @@ import com.microsoft.playwright.junit.Options;
 import com.microsoft.playwright.junit.OptionsFactory;
 
 /**
- * https://playwright.dev/java/docs/junit#customizing-options
+ * https://playwright.dev/java/docs/junit
  */
 public class CustomOptions implements OptionsFactory {
 
     @Override
     public Options getOptions() {
-	// read property set from Maven pom.xml
+	// read property from Maven pom.xml
 	boolean headless = BooleanUtils.toBoolean(System.getProperty("headless", "no"));
 	return new Options() //
 		.setHeadless(headless) // headless browser?

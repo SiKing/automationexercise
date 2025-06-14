@@ -67,7 +67,7 @@ class ContactUsTests {
 	 * https://playwright.dev/java/docs/dialogs
 	 */
 	page.onDialog(dialog -> {
-	    System.out.println(dialog.message());
+	    System.out.println("DEBUG> " + dialog.message());
 	    dialog.accept();
 	});
 	page.getByTestId("submit-button").click();

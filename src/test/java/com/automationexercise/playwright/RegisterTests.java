@@ -12,9 +12,6 @@ import org.junit.jupiter.api.Test;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.junit.UsePlaywright;
 
-/**
- * https://playwright.dev/java/docs/junit
- */
 @UsePlaywright(CustomOptions.class)
 class RegisterTests {
 
@@ -79,7 +76,7 @@ class RegisterTests {
 
 	assertThat(page).hasTitle("Automation Exercise");
 
-	page.getByText("Signup / Login").click(); // ByText is normalized
+	page.getByText("Signup / Login").click(); // ByText is normalized (and case insensitive?)
 
 	assertThat(page.getByText("New User Signup!")).isVisible();
 
