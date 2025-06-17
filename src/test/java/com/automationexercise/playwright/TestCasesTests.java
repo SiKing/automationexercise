@@ -17,6 +17,7 @@ import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.junit.UsePlaywright;
 import com.microsoft.playwright.options.AriaRole;
 
 class TestCasesTests {
@@ -27,7 +28,8 @@ class TestCasesTests {
     private Page page;
 
     /**
-     * All the setUp and tearDown can be replaced with {@link CustomOptions}.
+     * All the setUp and tearDown can be replaced with {@link UsePlaywright}
+     * annotation.
      * 
      * @throws Exception
      */
