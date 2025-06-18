@@ -5,6 +5,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.automationexercise.restassured.RegisterTests;
@@ -24,6 +25,18 @@ class LoginTests {
     @AfterAll
     static void deleteUser() throws Exception {
 	existingUser.test12_deleteUser();
+    }
+
+    @BeforeEach
+    void setUp(Page page) throws Exception {
+
+	page.navigate("http://automationexercise.com");
+
+	assertThat(page).hasTitle("Automation Exercise");
+
+	page.getByText("Signup / Login").click();
+
+	assertThat(page.getByText("Login to your account")).isVisible();
     }
 
     /**
@@ -51,14 +64,6 @@ class LoginTests {
      */
     @Test
     void test02(Page page) {
-
-	page.navigate("http://automationexercise.com");
-
-	assertThat(page).hasTitle("Automation Exercise");
-
-	page.getByText("Signup / Login").click();
-
-	assertThat(page.getByText("Login to your account")).isVisible();
 
 	page.getByTestId("login-email").fill(RegisterTests.email);
 	page.getByTestId("login-password").fill(RegisterTests.password);
@@ -91,14 +96,6 @@ class LoginTests {
      */
     @Test
     void test03(Page page) {
-
-	page.navigate("http://automationexercise.com");
-
-	assertThat(page).hasTitle("Automation Exercise");
-
-	page.getByText("Signup / Login").click();
-
-	assertThat(page.getByText("Login to your account")).isVisible();
 
 	// both wrong
 	page.getByTestId("login-email").fill(RandomStringUtils.insecure().nextAlphanumeric(10) + "@mailinator.com");
