@@ -1,6 +1,7 @@
 package com.exercise.strings;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class StringSorter {
 
@@ -26,5 +27,20 @@ public class StringSorter {
 	    return Character.compare(lastA, lastB);
 	});
 	return arr;
+    }
+
+    /**
+     * For comparison, Given a List of Strings, return a sorted List based on the
+     * last character of each sub-String.
+     * 
+     * @param list
+     * @return
+     */
+    public static List<String> sortByLastChar(List<String> list) {
+	return list.stream().sorted((a, b) -> {
+	    char lastA = a.charAt(a.length() - 1);
+	    char lastB = b.charAt(b.length() - 1);
+	    return Character.compare(lastA, lastB);
+	}).toList();
     }
 }
