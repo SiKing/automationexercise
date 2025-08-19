@@ -1,10 +1,13 @@
 package com.exercise.circularbuffer;
 
 /**
+ * <p>
  * My implementation based on
  * <a href="https://wikipedia.org/wiki/Circular_buffer">wikipedia.org</a>.
+ * <p>
+ * <strong>Note:</strong> This is not thread-safe!
  */
-public class CircularBuffer {
+public class CircularBuffer<E> {
 
     // buffer capacity (length)
     private static final int DEFAULT_CAPACITY = 7;
@@ -15,32 +18,33 @@ public class CircularBuffer {
     // read from buffer index (start)
     private int readIndex = 0;
     // buffer in memory
-    private int[] buffer = null;
+    private Object[] buffer = null;
 
     public CircularBuffer() {
-	buffer = new int[this.capacity];
+	buffer = new Object[this.capacity];
     }
 
     public CircularBuffer(int capacity) {
 	if (capacity > 0)
 	    this.capacity = capacity + 1;
-	buffer = new int[this.capacity];
+	buffer = new Object[this.capacity];
     }
 
-    public int put(int item) {
+    public boolean put(E value) {
 	if (isFull())
-	    return 0;
+	    return false;
 
-	buffer[writeIndex] = item;
+	buffer[writeIndex] = value;
 	writeIndex = (writeIndex + 1) % capacity;
-	return 1;
+	return true;
     }
 
-    public int get() {
+    @SuppressWarnings("unchecked")
+    public E get() {
 	if (isEmpty())
-	    return 0;
+	    return null;
 
-	int value = buffer[readIndex];
+	E value = (E) buffer[readIndex];
 	readIndex = (readIndex + 1) % capacity;
 	return value;
     }
@@ -60,6 +64,5 @@ public class CircularBuffer {
 }
 
 // TODO:
-// - change buffer to generic type
 // https://jenkov.com/tutorials/java-performance/ring-buffer.html
 // https://www.baeldung.com/java-ring-buffer
