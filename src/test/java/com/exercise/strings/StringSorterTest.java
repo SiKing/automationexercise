@@ -18,7 +18,7 @@ class StringSorterTest {
     }
 
     @Test
-    void testLots() {
+    void testMany() {
 	StringBuilder string = new StringBuilder();
 	for (int i = 0; i < 100_000; i++) {
 	    string.append(RandomStringUtils.insecure().nextAlphabetic(10));
