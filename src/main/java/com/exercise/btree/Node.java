@@ -1,6 +1,6 @@
 package com.exercise.btree;
 
-public class Node {
+public class Node implements Cloneable {
 
     private int value;
     private Node left, right; // children
@@ -13,7 +13,7 @@ public class Node {
 
     public Node(int value) {
 	this.value = value;
-	// explicitly set the children to null
+	// Explicitly set the children to null, because tree traversal depends on this!
 	this.left = null;
 	this.right = null;
     }
@@ -55,5 +55,17 @@ public class Node {
 	    return true; // Nodes have the same value
 
 	return false; // Nodes must have different values
+    }
+
+    /**
+     * Deep-clone this Node.
+     * 
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    public Node clone() throws CloneNotSupportedException {
+	Node n = (Node) super.clone();
+	// Apparently this does a deep-clone! :o
+	return n;
     }
 }
