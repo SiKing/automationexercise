@@ -1,12 +1,14 @@
 package com.exercise.btree;
 
+import org.apache.commons.lang3.RandomUtils;
+
 public class BinaryTree {
 
     private BinaryTree() {
 	// Do not instantiate this class
     }
 
-    public static boolean compareTrees(Node a, Node b) {
+    public static boolean areSame(Node a, Node b) {
 	if (a == null && b == null)
 	    return true; // Both Nodes are empty - equal
 
@@ -17,12 +19,12 @@ public class BinaryTree {
 	    return false; // Values of the Nodes are different
 
 	// Continue comparing left and right subtrees
-	return compareTrees(a.getLeft(), b.getLeft()) && compareTrees(a.getRight(), b.getRight());
+	return areSame(a.getLeft(), b.getLeft()) && areSame(a.getRight(), b.getRight());
     }
 
-    public static void reverseTree(Node node) {
+    public static void reverse(Node node) {
 	if (node == null)
-	    return; // If Node is null, do nothing
+	    return; // Node is null - do nothing
 
 	// Swap Nodes
 	Node temp = node.getLeft();
@@ -30,7 +32,41 @@ public class BinaryTree {
 	node.setRight(temp);
 
 	// Recursively reverse both sides of tree
-	reverseTree(node.getLeft());
-	reverseTree(node.getRight());
+	reverse(node.getLeft());
+	reverse(node.getRight());
+    }
+
+    /**
+     * Generate a random binary tree, creating given number of new Nodes. Mostly
+     * useful for generating test data.
+     * 
+     * @param node  - starting Node
+     * @param count - number of new Nodes to create
+     */
+    public static void generate(Node node, int count) {
+	if (count < 1)
+	    return;
+
+	if (RandomUtils.insecure().randomBoolean()) {
+	    // work on left side
+	    if (node.getLeft() == null) {
+		node.setLeft(new Node(RandomUtils.insecure().randomInt()));
+		// pick a new path
+		generate(node, count - 1);
+	    } else {
+		// follow same path
+		generate(node.getLeft(), count);
+	    }
+	} else {
+	    // work on right side
+	    if (node.getRight() == null) {
+		node.setRight(new Node(RandomUtils.insecure().randomInt()));
+		// pick a new path
+		generate(node, count - 1);
+	    } else {
+		// follow same path
+		generate(node.getRight(), count);
+	    }
+	}
     }
 }
