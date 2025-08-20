@@ -30,6 +30,6 @@ class StringSorterTest {
 	StringSorter.sortByLastChar(string.toString());
 	stopwatch.stop();
 
-	System.out.println("Time taken: " + stopwatch.getDuration().toMillis());
+	System.out.println("INFO> Time taken: " + stopwatch.getDuration().toMillis());
     }
 }
