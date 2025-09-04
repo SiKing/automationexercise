@@ -62,7 +62,3 @@ public class CircularBuffer<E> {
 	readIndex = 0;
     }
 }
-
-// TODO:
-// https://jenkov.com/tutorials/java-performance/ring-buffer.html
-// https://www.baeldung.com/java-ring-buffer
