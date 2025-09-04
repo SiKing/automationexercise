@@ -2,6 +2,7 @@ package com.exercise.btree;
 
 public class Node implements Cloneable {
 
+    // TODO: Make value generic.
     private int value;
     private Node left, right; // children
 
@@ -65,7 +66,7 @@ public class Node implements Cloneable {
     @Override
     public Node clone() throws CloneNotSupportedException {
 	Node n = (Node) super.clone();
-	// Apparently this does a deep-clone! :o
+	// Apparently this alone does a deep-clone! :o
 	return n;
     }
 }

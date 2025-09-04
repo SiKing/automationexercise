@@ -22,6 +22,11 @@ public class BinaryTree {
 	return areSame(a.getLeft(), b.getLeft()) && areSame(a.getRight(), b.getRight());
     }
 
+    /**
+     * Another popular interview question.
+     * 
+     * @param node
+     */
     public static void reverse(Node node) {
 	if (node == null)
 	    return; // Node is null - do nothing
