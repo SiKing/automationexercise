@@ -2,13 +2,13 @@ package com.exercise.btree;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 class NodeTest {
 
-    @SuppressWarnings("unlikely-arg-type")
     @Test
     void testEquals() {
 	Node n1 = new Node(123);
@@ -16,13 +16,13 @@ class NodeTest {
 	n2.setLeft(new Node(456));
 	Node n3 = new Node(789);
 
-	assertFalse(n1.equals(null), "null is not a Node");
+	assertNotEquals(n1, null, "null is not a Node");
 
-	assertFalse(n1.equals(new String("123")), "String is not a Node");
+	assertNotEquals(n1, 123, "int is not a Node");
 
-	assertTrue(n1.equals(n2)); // only compares Node values, not children
+	assertEquals(n1, n2); // only compares Node values, not children
 
-	assertFalse(n1.equals(n3));
+	assertNotEquals(n1, n3);
     }
 
     @Test
@@ -30,11 +30,30 @@ class NodeTest {
 	Node node = new Node(123);
 	node.setLeft(new Node(456));
 	Node clone = (Node) node.clone();
+
 	assertEquals(node, clone);
+
 	assertTrue(BinaryTree.areSame(node, clone));
 
 	node.setRight(new Node(789));
+
 	assertEquals(node, clone); // only compares Node values, not children
+
 	assertFalse(BinaryTree.areSame(node, clone)); // compares children too
+    }
+
+    @Test
+    void testDeepClone() throws Exception {
+	Node node = new Node(123);
+	node.setLeft(new Node(456));
+	Node clone = (Node) node.clone();
+
+	assertEquals(456, node.getLeft().getValue());
+	assertEquals(456, clone.getLeft().getValue());
+
+	node.getLeft().setValue(666); // Modify only original Node?
+
+	assertEquals(666, node.getLeft().getValue(), "Original Node should be modified");
+	assertEquals(456, clone.getLeft().getValue(), "Clone Node should **not** be modified");
     }
 }

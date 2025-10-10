@@ -2,8 +2,7 @@ package com.exercise.btree;
 
 public class Node implements Cloneable {
 
-    // TODO: Make value generic.
-    private int value;
+    private int value; // TODO: make generic
     private Node left, right; // children
 
     public Node(int value, Node left, Node right) {
@@ -14,7 +13,7 @@ public class Node implements Cloneable {
 
     public Node(int value) {
 	this.value = value;
-	// Explicitly set the children to null, because tree traversal depends on this!
+	// Explicitly set children to null, because tree traversal depends on this!
 	this.left = null;
 	this.right = null;
     }
@@ -59,14 +58,18 @@ public class Node implements Cloneable {
     }
 
     /**
-     * Deep-clone this Node.
+     * Deep-clone {@code this} Node.
      * 
      * @throws CloneNotSupportedException
      */
     @Override
     public Node clone() throws CloneNotSupportedException {
 	Node n = (Node) super.clone();
-	// Apparently this alone does a deep-clone! :o
+	if (n.getLeft() != null)
+	    n.setLeft(n.getLeft().clone());
+	if (n.getRight() != null)
+	    n.setRight(n.getRight().clone());
+
 	return n;
     }
 }
