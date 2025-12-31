@@ -12,6 +12,13 @@
 		for everybody to help them brush up their automation skills.</description>
 	<url>https://www.automationexercise.com/</url>
 
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}-site</id>
+			<url>${project.baseUri}</url>
+		</site>
+	</distributionManagement>
+
 	<properties>
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
@@ -74,8 +81,106 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.21.0</version>
+				<executions>
+					<execution>
+						<id>build-and-stage-site</id>
+						<phase>site</phase>
+						<goals>
+							<goal>stage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 
 	</build>
+
+	<reporting>
+
+		<plugins>
+
+			<!-- Main page. This uses the information from name, description,
+			url, and organization at the top of this (or any child-) pom. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.9.0</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>dependencies</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- Include dependency report. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.9.0</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>analyze-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+
+			<!-- Include test results report. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.5.4</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report-only</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<aggregate>true</aggregate>
+				</configuration>
+			</plugin>
+
+			<!-- Include code health for all modules. -->
+			<!-- Source: https://docs.pmd-code.org/latest/ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.28.0</version>
+			</plugin>
+
+			<!-- Include javadocs for all modules. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.12.0</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<additionalOptions>
+						<additionalOption>-Xdoclint:none</additionalOption>
+					</additionalOptions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</reporting>
 
 </project>
