@@ -30,8 +30,8 @@ public class Fibonacci {
 
     /**
      * <p>
-     * Returns Fibonacci number at position n (0-based). n=0 returns 0; n=1 returns
-     * 1; n=2 returns 1; n=3 returns 2; etc.
+     * Return Fibonacci number at position n. n=0 returns 0; n=1 returns 1; n=2
+     * returns 1; n=3 returns 2; etc.
      * <p>
      * <strong>Note:</strong> This is not memory efficient, but more interesting?
      * 

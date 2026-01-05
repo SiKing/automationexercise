@@ -47,6 +47,7 @@ public class Node implements Cloneable {
      */
     @Override
     public boolean equals(Object obj) {
+
 	if (!(obj instanceof Node))
 	    return false; // Not a Node
 
@@ -63,7 +64,7 @@ public class Node implements Cloneable {
      * @throws CloneNotSupportedException
      */
     @Override
-    public Node clone() throws CloneNotSupportedException {
+    protected Node clone() throws CloneNotSupportedException {
 	Node n = (Node) super.clone();
 	if (n.getLeft() != null)
 	    n.setLeft(n.getLeft().clone());

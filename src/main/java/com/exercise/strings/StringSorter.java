@@ -10,8 +10,8 @@ public class StringSorter {
     }
 
     /**
-     * Given a String of Strings, return a sorted String based on the last character
-     * of each sub-String.
+     * The actual interview question: Given a String of Strings, return a sorted
+     * String based on the last character of each sub-String.
      * 
      * @param str
      * @return
@@ -20,6 +20,13 @@ public class StringSorter {
 	return String.join(" ", sortByLastChar(str.split(" ")));
     }
 
+    /**
+     * Given an Array of Strings, return a sorted Array based on the last character
+     * of each String.
+     * 
+     * @param arr
+     * @return
+     */
     public static String[] sortByLastChar(String[] arr) {
 	Arrays.sort(arr, (a, b) -> {
 	    char lastA = a.charAt(a.length() - 1);
@@ -31,7 +38,7 @@ public class StringSorter {
 
     /**
      * For comparison, Given a List of Strings, return a sorted List based on the
-     * last character of each sub-String.
+     * last character of each String.
      * 
      * @param list
      * @return
