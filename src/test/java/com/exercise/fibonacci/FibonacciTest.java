@@ -39,7 +39,7 @@ class FibonacciTest {
     void testFibRecursiveMany() {
 	StopWatch stopwatch = new StopWatch();
 	stopwatch.start();
-	Fibonacci.fibRecursive(50); // >50 starts to take too long
+	Fibonacci.fibRecursive(50); // XXX: >50 starts to take too long; works on my machine {tm}
 	stopwatch.stop();
 
 	System.out.println("INFO> Time taken: " + stopwatch.getDuration().toMillis());

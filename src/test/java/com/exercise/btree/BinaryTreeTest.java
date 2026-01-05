@@ -38,7 +38,7 @@ class BinaryTreeTest {
 
 	StopWatch stopwatch = new StopWatch();
 	stopwatch.start();
-	BinaryTree.generate(node, 4_000); // at >4k StackOverflow occurs
+	BinaryTree.generate(node, 4_000); // XXX: at >4k StackOverflow occurs; works on my machine {tm}
 	stopwatch.stop();
 
 	System.out.println("INFO> Time taken: " + stopwatch.getDuration().toMillis());
