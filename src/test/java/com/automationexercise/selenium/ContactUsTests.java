@@ -29,7 +29,8 @@ public class ContactUsTests extends LaunchBrowser {
 	driver.findElement(By.name("message")).sendKeys("This is a test message.");
 
 	// Upload a file
-	String filePath = Paths.get("src/test/resources/testfile.txt").toAbsolutePath().toString();
+	String filePath = Paths.get("src/test/resources/com/automationexercise/selenium/testfile.txt").toAbsolutePath()
+		.toString();
 	driver.findElement(By.name("upload_file")).sendKeys(filePath);
 
 	// Submit the form
