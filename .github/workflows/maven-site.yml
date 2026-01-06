@@ -1,0 +1,38 @@
+name: Deploy Maven Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - '**'	# Trigger on pushes to the main branch
+
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build Maven site
+        run: mvn site	# Generates site content in target/site directory
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: 'target/site'	# Path to the generated site files
+
+  deploy-pages:
+    needs: build-site
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write	# Grants the GITHUB_TOKEN write permission for pages
+      id-token: write	# Grants the GITHUB_TOKEN to create an OIDC token
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
