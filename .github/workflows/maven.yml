@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: test-reports
-          path: '**/target/surefire-reports/**'
+          path: 'target/surefire-reports/**'
           retention-days: 1
 
   build-site:
@@ -54,7 +54,7 @@ jobs:
           path: 'target/site'
           retention-days: 1
 
-  deploy-pages:
+  deploy-site:
     needs: build-site
     runs-on: ubuntu-latest
     permissions:
