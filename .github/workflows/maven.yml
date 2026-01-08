@@ -29,6 +29,7 @@ jobs:
           retention-days: 1
 
   build-site:
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +53,7 @@ jobs:
           retention-days: 1
 
   deploy-site:
+    if: github.ref == 'refs/heads/main'
     needs: build-site
     runs-on: ubuntu-latest
     permissions:
